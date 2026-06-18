@@ -471,9 +471,21 @@
     .hero-name { font-size: 2rem; }
     .nav-links { display: none; }
   }
+
+#scrollProgress{position:fixed;top:0;left:0;width:0%;height:3px;z-index:9999;background:linear-gradient(90deg,#00a9e0,#7b5cfa);box-shadow:0 0 20px rgba(123,92,250,.5)}
+.animated-bg{position:fixed;inset:0;z-index:-2;background:radial-gradient(circle at 20% 20%,rgba(0,169,224,.18),transparent 40%),radial-gradient(circle at 80% 30%,rgba(123,92,250,.18),transparent 40%),radial-gradient(circle at 50% 80%,rgba(0,169,224,.12),transparent 50%);animation:bgFloat 18s ease-in-out infinite}
+@keyframes bgFloat{0%{transform:translate(0,0) scale(1)}50%{transform:translate(-20px,-30px) scale(1.05)}100%{transform:translate(0,0) scale(1)}}
+.hero-grid{display:grid;grid-template-columns:2fr 1fr;gap:1rem;align-items:center}
+.mini-card,.skill-card,.project-card,.cert-card,.timeline-card,.contact-item,.contact-form{background:rgba(30,42,58,.55)!important;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.09)!important;box-shadow:0 8px 32px rgba(0,0,0,.2)}
+.mini-card:hover,.project-card:hover,.cert-card:hover{transform:translateY(-4px);border-color:rgba(123,92,250,.4)!important}
+.hero-badge{background:rgba(255,255,255,.06)!important;backdrop-filter:blur(15px);border:1px solid rgba(255,255,255,.12)!important}
+.project-thumb{height:180px;border-radius:10px;overflow:hidden;margin-bottom:1rem;background:linear-gradient(135deg,#00a9e0,#7b5cfa);display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+
 </style>
 </head>
 <body>
+<div id="scrollProgress"></div>
+<div class="animated-bg"></div>
 
 <nav>
   <span class="nav-brand">
@@ -687,6 +699,7 @@
   <div class="projects-grid" id="projectsGrid">
 
     <div class="project-card" data-tags="b2b lwc">
+      <div class="project-thumb">Project Preview</div>
       <div class="project-header">
         <span class="project-name">Highline Warren</span>
         <span class="project-type">B2B Commerce</span>
@@ -699,6 +712,7 @@
     </div>
 
     <div class="project-card" data-tags="b2b lwc">
+      <div class="project-thumb">Project Preview</div>
       <div class="project-header">
         <span class="project-name">Johns Manville</span>
         <span class="project-type">LWC Migration</span>
@@ -711,6 +725,7 @@
     </div>
 
     <div class="project-card" data-tags="b2b lwc integration">
+      <div class="project-thumb">Project Preview</div>
       <div class="project-header">
         <span class="project-name">Valmont</span>
         <span class="project-type">Run & Operate</span>
@@ -723,6 +738,7 @@
     </div>
 
     <div class="project-card" data-tags="b2b lwc integration">
+      <div class="project-thumb">Project Preview</div>
       <div class="project-header">
         <span class="project-name">Andersen Windows</span>
         <span class="project-type">Solo Contributor</span>
@@ -735,6 +751,7 @@
     </div>
 
     <div class="project-card" data-tags="b2b lwc integration">
+      <div class="project-thumb">Project Preview</div>
       <div class="project-header">
         <span class="project-name">Hunter Douglas</span>
         <span class="project-type">B2B Commerce</span>
@@ -747,6 +764,7 @@
     </div>
 
     <div class="project-card" data-tags="ai lwc">
+      <div class="project-thumb">Project Preview</div>
       <div class="project-header">
         <span class="project-name">ASPIRE POC — Dreamforce '23</span>
         <span class="project-type">AI / Einstein GPT</span>
@@ -1186,17 +1204,10 @@ document.getElementById('themeToggle').addEventListener('click', function() {
   this.textContent = isLight ? '☀ Light' : '🌙 Dark';
 });
 
+
+window.addEventListener('scroll',()=>{const st=window.scrollY;const h=document.documentElement.scrollHeight-document.documentElement.clientHeight;document.getElementById('scrollProgress').style.width=((st/h)*100)+'%';});
 // Init interview
 showCategory('sf', document.querySelector('.interview-cat-btn'));
-</script>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-<script>
-(function() {
-    emailjs.init({
-        publicKey: "YOUR_PUBLIC_KEY"
-    });
-})();
 </script>
 </body>
 </html>
